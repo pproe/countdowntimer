@@ -7,13 +7,6 @@ function App() {
   const [daysLeft, setDaysLeft] = useState(0);
   const [showEvent, setShowEvent] = useState(false);
 
-  const [displayValues, setDisplayValues] = useState({
-    name: "",
-    eventDay: 0,
-    eventMonth: 0,
-    eventYear: 0,
-  });
-
   const [values, setValues] = useState({
     name: "",
     eventDay: 0,
@@ -41,7 +34,6 @@ function App() {
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
 
-    setDisplayValues(values);
     setShowEvent(true);
   };
 
