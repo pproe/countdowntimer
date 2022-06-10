@@ -30,6 +30,12 @@ function CountdownInput(props: Props) {
       case "eventDay":
         setValues({ ...values, eventDay: +target.value });
         break;
+      case "eventHour":
+        setValues({ ...values, eventHour: +target.value });
+        break;
+      case "eventMinute":
+        setValues({ ...values, eventMinute: +target.value });
+        break;
       default:
         console.error("Application misconfigured. Input target ID malformed.");
         break;
@@ -72,6 +78,24 @@ function CountdownInput(props: Props) {
             type="number"
             id="eventDay"
             value={values.eventDay}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Hour
+          <input
+            type="number"
+            id="eventDay"
+            value={values.eventHour}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Minute
+          <input
+            type="number"
+            id="eventMinute"
+            value={values.eventMinute}
             onChange={handleChange}
           />
         </label>
