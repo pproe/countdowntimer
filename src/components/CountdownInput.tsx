@@ -9,14 +9,11 @@ import { InputValues } from "../types";
 interface Props {
   values: InputValues;
   setValues: Dispatch<InputValues>;
+  handleSubmit: FormEventHandler;
 }
 
 function CountdownInput(props: Props) {
-  const { setValues, values } = props;
-
-  const handleSubmit: FormEventHandler = (event) => {
-    event.preventDefault();
-  };
+  const { setValues, values, handleSubmit } = props;
 
   const handleChange: ChangeEventHandler = (event) => {
     const target = event.target as HTMLInputElement;
@@ -77,6 +74,9 @@ function CountdownInput(props: Props) {
             value={values.eventDay}
             onChange={handleChange}
           />
+        </label>
+        <label>
+          <input type="submit"></input>
         </label>
       </form>
     </div>

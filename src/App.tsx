@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import "./App.css";
 import CountdownDisplay from "./components/CountdownDisplay";
 import CountdownInput from "./components/CountdownInput";
 
 function App() {
   const [daysLeft, setDaysLeft] = useState(0);
-  const [displayInput, setDisplayInput] = useState(true);
+  const [showEvent, setShowEvent] = useState(false);
+
+  const [displayValues, setDisplayValues] = useState({
+    name: "",
+    eventDay: 0,
+    eventMonth: 0,
+    eventYear: 0,
+  });
 
   const [values, setValues] = useState({
     name: "",
@@ -31,12 +38,34 @@ function App() {
     setDaysLeft(diff);
   }, [values]);
 
+  const handleSubmit: FormEventHandler = (event) => {
+    event.preventDefault();
+
+    setDisplayValues(values);
+    setShowEvent(true);
+  };
+
+  const handleReset = () => {
+    setShowEvent(false);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <p>Event Countdown</p>
-        <CountdownInput values={values} setValues={setValues} />
-        <CountdownDisplay daysLeft={daysLeft} eventName={values.name} />
+        {showEvent ? (
+          <CountdownDisplay
+            daysLeft={daysLeft}
+            eventName={values.name}
+            handleReset={handleReset}
+          />
+        ) : (
+          <CountdownInput
+            values={values}
+            setValues={setValues}
+            handleSubmit={handleSubmit}
+          />
+        )}
       </header>
     </div>
   );
